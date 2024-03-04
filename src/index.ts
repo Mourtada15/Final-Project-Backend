@@ -15,7 +15,8 @@ const app: Application = express();
 // Middleware
 app.use(cookieParser('your_secret_key'));
 app.use(express.json());
-app.use(cors({ credentials: true, origin: 'https://marketease.vercel.app/' }));
+// app.use(cors({ credentials: true, origin: 'https://marketease.vercel.app/' }));
+app.use(cors({ credentials: true, origin: '*' }));
 app.use("/uploads", express.static('uploads'));
 
 // Routes
