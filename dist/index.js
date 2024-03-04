@@ -17,7 +17,8 @@ const app = (0, express_1.default)();
 // Middleware
 app.use((0, cookie_parser_1.default)('your_secret_key'));
 app.use(express_1.default.json());
-app.use((0, cors_1.default)({ credentials: true, origin: 'http://localhost:3000' }));
+// app.use(cors({ credentials: true, origin: 'https://marketease.vercel.app/' }));
+app.use((0, cors_1.default)({ credentials: true, origin: '*' }));
 app.use("/uploads", express_1.default.static('uploads'));
 // Routes
 app.use('/api/categories', categoryRoutes_1.default);
