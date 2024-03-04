@@ -15,7 +15,7 @@ const app: Application = express();
 // Middleware
 app.use(cookieParser('your_secret_key'));
 app.use(express.json());
-app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
+app.use(cors());
 app.use("/uploads", express.static('uploads'));
 
 // Routes

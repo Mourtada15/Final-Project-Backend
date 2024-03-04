@@ -24,11 +24,6 @@ app.use('/api/categories', categoryRoutes_1.default);
 app.use('/api/subcategories', subCategoryRoutes_1.default);
 app.use('/api/users', userRoutes_1.default);
 app.use('/api/products', productRoutes_1.default);
-app.get('/', (req, res) => {
-    res.json([{
-            "id": "test555"
-        }]);
-});
 // Connect to db
 mongoose_1.default
     .connect(process.env.MONGO_URI)
