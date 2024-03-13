@@ -28,11 +28,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const userControllers = __importStar(require("../controllers/userControllers"));
-const jwt_1 = require("../middleware/jwt");
+// import { requireAuth } from "../middleware/jwt";
 const router = express_1.default.Router();
 router.post('/register', (req, res) => userControllers.register(req, res));
 router.post('/login', (req, res) => userControllers.login(req, res));
-router.use(jwt_1.requireAuth);
+// router.use(requireAuth);
 router.get('/', (req, res) => userControllers.getUsers(req, res));
 router.get('/:id', (req, res) => userControllers.getUser(req, res));
 router.put('/:id', (req, res) => userControllers.updateUser(req, res));

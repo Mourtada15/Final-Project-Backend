@@ -14,19 +14,19 @@ const app: Application = express();
 
 // Middleware
 app.use(cookieParser('your_secret_key'));
-const allowedOrigins = ['http://localhost:3000', 'https://marketease.netlify.app/'];
-const corsOptions: cors.CorsOptions = {
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true, // Allow cookies to be sent with the request
-};
-app.use(cors(corsOptions));
-// app.use(cors({ credentials: true, origin: '*' }));
+// const allowedOrigins = ['http://localhost:3000', 'https://marketease.netlify.app/'];
+// const corsOptions: cors.CorsOptions = {
+//   origin: function (origin, callback) {
+//     if (!origin || allowedOrigins.includes(origin)) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error('Not allowed by CORS'));
+//     }
+//   },
+//   credentials: true, // Allow cookies to be sent with the request
+// };
+// app.use(cors(corsOptions));
+app.use(cors({ credentials: true, origin: '*' }));
 app.use(express.json());
 app.use("/uploads", express.static('uploads'));
 

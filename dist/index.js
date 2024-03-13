@@ -16,20 +16,19 @@ dotenv_1.default.config();
 const app = (0, express_1.default)();
 // Middleware
 app.use((0, cookie_parser_1.default)('your_secret_key'));
-const allowedOrigins = ['http://localhost:3000', 'https://marketease.netlify.app/'];
-const corsOptions = {
-    origin: function (origin, callback) {
-        if (!origin || allowedOrigins.includes(origin)) {
-            callback(null, true);
-        }
-        else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
-    credentials: true, // Allow cookies to be sent with the request
-};
-app.use((0, cors_1.default)(corsOptions));
-// app.use(cors({ credentials: true, origin: '*' }));
+// const allowedOrigins = ['http://localhost:3000', 'https://marketease.netlify.app/'];
+// const corsOptions: cors.CorsOptions = {
+//   origin: function (origin, callback) {
+//     if (!origin || allowedOrigins.includes(origin)) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error('Not allowed by CORS'));
+//     }
+//   },
+//   credentials: true, // Allow cookies to be sent with the request
+// };
+// app.use(cors(corsOptions));
+app.use((0, cors_1.default)({ credentials: true, origin: '*' }));
 app.use(express_1.default.json());
 app.use("/uploads", express_1.default.static('uploads'));
 // Routes
