@@ -127,3 +127,25 @@ export const deleteUser = async (req: Request<{ id: string }>, res: Response) =>
     res.status(500).json({ error: error.message });
   }
 };
+
+export const logout = async (req: Request, res: Response) => {
+  try {
+    // Clear the user's session (if using session-based authentication)
+    req.session.destroy((err) => {
+      if (err) {
+        console.error('Error destroying session:', err);
+      } else {
+        console.log('Session destroyed successfully');
+      }
+    });
+
+    // Clear the authentication token (if using token-based authentication)
+    res.clearCookie("jwt");
+
+    // Send a success response
+    res.status(200).json({ message: "Logout successful" });
+  } catch (error) {
+    console.error("Error logging out:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};

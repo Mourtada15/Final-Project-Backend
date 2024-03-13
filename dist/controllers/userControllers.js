@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteUser = exports.updateUser = exports.login = exports.register = exports.getUser = exports.getUsers = void 0;
+exports.logout = exports.deleteUser = exports.updateUser = exports.login = exports.register = exports.getUser = exports.getUsers = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const userModel_1 = __importDefault(require("../models/userModel"));
@@ -119,3 +119,25 @@ const deleteUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     }
 });
 exports.deleteUser = deleteUser;
+const logout = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        // Clear the user's session (if using session-based authentication)
+        req.session.destroy((err) => {
+            if (err) {
+                console.error('Error destroying session:', err);
+            }
+            else {
+                console.log('Session destroyed successfully');
+            }
+        });
+        // Clear the authentication token (if using token-based authentication)
+        res.clearCookie("jwt");
+        // Send a success response
+        res.status(200).json({ message: "Logout successful" });
+    }
+    catch (error) {
+        console.error("Error logging out:", error);
+        res.status(500).json({ message: "Internal Server Error" });
+    }
+});
+exports.logout = logout;

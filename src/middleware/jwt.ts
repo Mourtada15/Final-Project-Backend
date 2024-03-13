@@ -10,16 +10,18 @@ export const requireAuth = (req: RequestWithToken, res: Response, next: NextFunc
   const secretKey = process.env.JWT_SECRET;
 
   if (!token) {
+    console.error('No token')
     return res.redirect('/login');
   }
 
   Jwt.verify(token, secretKey as string, (err, decodedToken) => {
     if (err) {
-      console.log(err.message);
+      console.log("Error decoding token", err.message);
       return res.redirect('/login');
     }
 
     if (!decodedToken) {
+      console.error('nvalid tokennn')
       throw new Error("Invalid token");
     }
 

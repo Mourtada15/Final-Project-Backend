@@ -14,10 +14,12 @@
     "@types/multer": "^1.4.11",
     "@types/node": "^20.11.17",
     "bcrypt": "^5.1.1",
+    "connect-mongo": "^5.1.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.4.4",
     "express": "^4.18.2",
+    "express-session": "^1.18.0",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.3.0",
     "mongoose": "^8.1.2",
@@ -29,5 +31,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express-session": "^1.18.0"
+  }
 }

@@ -12,5 +12,6 @@ router.get('/', (req: Request, res: Response) => userControllers.getUsers(req, r
 router.get('/:id', (req: Request<{ id: string }>, res: Response) => userControllers.getUser(req, res));
 router.put('/:id', (req: Request<{ id: string }>, res: Response) => userControllers.updateUser(req, res));
 router.delete('/:id', (req: Request<{ id: string }>, res: Response) => userControllers.deleteUser(req, res));
+router.post('/logout', (req: Request<{ id: string }>, res: Response) => userControllers.logout(req, res))
 
 export default router;

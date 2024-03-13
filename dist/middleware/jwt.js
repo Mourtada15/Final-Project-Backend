@@ -9,14 +9,16 @@ const requireAuth = (req, res, next) => {
     const token = req.cookies.jwt;
     const secretKey = process.env.JWT_SECRET;
     if (!token) {
+        console.error('No token');
         return res.redirect('/login');
     }
     jsonwebtoken_1.default.verify(token, secretKey, (err, decodedToken) => {
         if (err) {
-            console.log(err.message);
+            console.log("Error decoding token", err.message);
             return res.redirect('/login');
         }
         if (!decodedToken) {
+            console.error('nvalid tokennn');
             throw new Error("Invalid token");
         }
         console.log(decodedToken);
