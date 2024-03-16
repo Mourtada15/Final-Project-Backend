@@ -42,9 +42,10 @@ export const getCategory = async (req: Request<{ id: string }>, res: Response<IC
 // Create a new category
 export const createCategory = async (req: Request, res: Response) => {
   const { name } = req.body as { name: string }; 
+  const icon = req.file?.path;
 
   try {
-    const newCategory: ICategory = await Category.create({ name });
+    const newCategory: ICategory = await Category.create({ name, icon });
     res.status(200).json(newCategory);
   } catch (error: any) {
     res.status(500).json({ error: error.message });
@@ -79,15 +80,15 @@ export const updateCategory = async (req: Request<{ id: string }>, res: Response
   }
 
   try {
-    const updatedCategory: ICategory | null = await Category.findOneAndUpdate(
-      { _id: id },
+    const updatedCategory: ICategory | null = await Category.findByIdAndUpdate(
+      id,
       req.body,
       { new: true }
     );
     if (!updatedCategory) {
       return res.status(404).json({ error: "Category not found." });
     }
-    res.status(200).json(updatedCategory);
+    res.status(200).json({ message: "Category updated successfully", updatedCategory });
   } catch (error: any) {
     res.status(500).json({ error: error.message });
   }

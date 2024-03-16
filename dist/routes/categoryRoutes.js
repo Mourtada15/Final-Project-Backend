@@ -28,12 +28,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const categoryControllers = __importStar(require("../controllers/categoryControllers"));
+const multer_1 = __importDefault(require("../middleware/multer"));
 const jwt_1 = require("../middleware/jwt");
 const router = express_1.default.Router();
-router.get('/', (req, res) => categoryControllers.getCategories(req, res));
-router.get('/:id', (req, res) => categoryControllers.getCategory(req, res));
+router.get('/', categoryControllers.getCategories);
+router.get('/:id', categoryControllers.getCategory);
 router.use(jwt_1.requireAuth);
-router.post('/', (req, res) => categoryControllers.createCategory(req, res));
-router.delete('/:id', (req, res) => categoryControllers.deleteCategory(req, res));
-router.put('/:id', (req, res) => categoryControllers.updateCategory(req, res));
+router.post('/', multer_1.default.single('icon'), categoryControllers.createCategory);
+router.delete('/:id', categoryControllers.deleteCategory);
+router.put('/:id', categoryControllers.updateCategory);
 exports.default = router;

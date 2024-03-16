@@ -46,9 +46,11 @@ const getCategory = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 exports.getCategory = getCategory;
 // Create a new category
 const createCategory = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
     const { name } = req.body;
+    const icon = (_a = req.file) === null || _a === void 0 ? void 0 : _a.path;
     try {
-        const newCategory = yield categoryModel_1.default.create({ name });
+        const newCategory = yield categoryModel_1.default.create({ name, icon });
         res.status(200).json(newCategory);
     }
     catch (error) {
@@ -81,11 +83,11 @@ const updateCategory = (req, res) => __awaiter(void 0, void 0, void 0, function*
         return res.status(400).json({ error: "Invalid category ID." });
     }
     try {
-        const updatedCategory = yield categoryModel_1.default.findOneAndUpdate({ _id: id }, req.body, { new: true });
+        const updatedCategory = yield categoryModel_1.default.findByIdAndUpdate(id, req.body, { new: true });
         if (!updatedCategory) {
             return res.status(404).json({ error: "Category not found." });
         }
-        res.status(200).json(updatedCategory);
+        res.status(200).json({ message: "Category updated successfully", updatedCategory });
     }
     catch (error) {
         res.status(500).json({ error: error.message });

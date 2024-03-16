@@ -3,6 +3,7 @@ import mongoose, { Schema, Document, ObjectId } from "mongoose";
 // Interface for Category data
 export interface ICategory extends Document {
   name: string;
+  icon: string;
   subCategories: ObjectId[];
 }
 
@@ -13,6 +14,10 @@ const categorySchema = new Schema<ICategory>(
       required: true,
       unique: true,
       trim: true
+    },
+    icon: {
+      type: String,
+      // required: true,
     },
     subCategories: [{
       type: mongoose.Schema.Types.ObjectId,
