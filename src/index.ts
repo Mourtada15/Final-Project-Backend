@@ -1,12 +1,12 @@
 import express, { Application } from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import cors from "cors";
 import cookieParser from 'cookie-parser';
 import categoryRoutes from "./routes/categoryRoutes";
 import subCategoryRoutes from "./routes/subCategoryRoutes";
 import userRoutes from "./routes/userRoutes";
 import productRoutes from "./routes/productRoutes"
-import { createProxyMiddleware } from "http-proxy-middleware";
 
 dotenv.config();
 
@@ -15,18 +15,10 @@ const app: Application = express();
 // Middleware
 app.use(cookieParser('your_secret_key'));
 
-// Define the target URL of your backend server
-const backendUrl = "https://final-project-backend-fksz.onrender.com";
-
-// Create a proxy middleware for '/api' requests
-const apiProxy = createProxyMiddleware({
-  target: backendUrl,
-  changeOrigin: true,
-});
-
-// Use the proxy middleware for '/api' requests
-app.use("/api", apiProxy);
-
+app.use(cors({
+  credentials: true,
+  origin: ['http://localhost:3000', 'https://marketease.netlify.app/']
+}));
 app.use(express.json());
 app.use("/uploads", express.static('uploads'));
 
