@@ -17,7 +17,7 @@ app.use(cookieParser('your_secret_key'));
 
 app.use(cors({
   credentials: true,
-  origin: ['http://localhost:3000', 'https://marketease.netlify.app/']
+  origin: ['http://localhost:3000', 'https://marketease.netlify.app']
 }));
 app.use(express.json());
 app.use("/uploads", express.static('uploads'));
