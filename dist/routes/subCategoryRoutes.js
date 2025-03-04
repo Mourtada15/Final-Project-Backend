@@ -38,11 +38,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const subCategoryControllers = __importStar(require("../controllers/subCategoryControllers"));
-const jwt_1 = require("../middleware/jwt");
 const router = express_1.default.Router();
 router.get('/', (req, res) => subCategoryControllers.getSubCategories(req, res));
 router.get('/:id', (req, res) => subCategoryControllers.getSubCategory(req, res));
-router.use(jwt_1.requireAuth);
+// router.use(requireAuth);
 router.post('/', (req, res) => subCategoryControllers.createSubCategory(req, res));
 router.delete('/:id', (req, res) => subCategoryControllers.deleteSubCategory(req, res));
 router.put('/:id', (req, res) => subCategoryControllers.updateSubCategory(req, res));
