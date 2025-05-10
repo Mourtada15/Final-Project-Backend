@@ -12,6 +12,7 @@ const categoryRoutes_1 = __importDefault(require("./routes/categoryRoutes"));
 const subCategoryRoutes_1 = __importDefault(require("./routes/subCategoryRoutes"));
 const userRoutes_1 = __importDefault(require("./routes/userRoutes"));
 const productRoutes_1 = __importDefault(require("./routes/productRoutes"));
+const searchRoutes_1 = __importDefault(require("./routes/searchRoutes"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 // Middleware
@@ -27,6 +28,7 @@ app.use('/api/categories', categoryRoutes_1.default);
 app.use('/api/subcategories', subCategoryRoutes_1.default);
 app.use('/api/users', userRoutes_1.default);
 app.use('/api/products', productRoutes_1.default);
+app.use('/api/search', searchRoutes_1.default);
 // Connect to db
 mongoose_1.default
     .connect(process.env.MONGO_URI)

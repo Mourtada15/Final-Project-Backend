@@ -50,6 +50,8 @@ const categorySchema = new mongoose_1.Schema({
             ref: "SubCategory",
         }],
 }, { timestamps: true });
+// Create a text index on the name field
+categorySchema.index({ name: 'text' });
 categorySchema.pre("find", function (next) {
     this.populate(["subCategories"]);
     next();

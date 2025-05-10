@@ -6,7 +6,8 @@ import cookieParser from 'cookie-parser';
 import categoryRoutes from "./routes/categoryRoutes";
 import subCategoryRoutes from "./routes/subCategoryRoutes";
 import userRoutes from "./routes/userRoutes";
-import productRoutes from "./routes/productRoutes"
+import productRoutes from "./routes/productRoutes";
+import searchRoutes from "./routes/searchRoutes";
 
 dotenv.config();
 
@@ -27,6 +28,7 @@ app.use('/api/categories', categoryRoutes);
 app.use('/api/subcategories', subCategoryRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/products', productRoutes);
+app.use('/api/search', searchRoutes);
 
 // Connect to db
 mongoose

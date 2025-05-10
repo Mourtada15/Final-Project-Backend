@@ -64,6 +64,8 @@ const productSchema = new mongoose_1.Schema({
         required: true
     }
 }, { timestamps: true });
+// Create a text index on the title and description fields
+productSchema.index({ title: 'text', description: 'text' });
 productSchema.pre("find", function (next) {
     this.populate(["subCategoryID"]);
     next();

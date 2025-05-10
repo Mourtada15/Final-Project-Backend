@@ -24,6 +24,9 @@ const subCategorySchema = new Schema<ISubCategory>(
   { timestamps: true }
 );
 
+//Create a text index on the name field
+subCategorySchema.index({ name: "text" });
+
 subCategorySchema.pre("save", async function (next) {
   try {
     // Ensure that category is properly defined and contains the necessary data
@@ -42,9 +45,12 @@ subCategorySchema.pre("save", async function (next) {
       category.subCategories = [];
     }
 
+    // Cast `this._id` as an `ObjectId`
+    const subCategoryId = this._id as mongoose.Schema.Types.ObjectId;
+
     // Check if the current subcategory name is already in the subCategories array
-    if (!category.subCategories.includes(this._id)) {
-      category.subCategories.push(this._id);
+    if (!category.subCategories.includes(subCategoryId)) {
+      category.subCategories.push(subCategoryId);
     }
 
     await category.save();

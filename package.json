@@ -35,6 +35,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/express-session": "^1.18.0"
+    "@types/express-session": "^1.18.0",
+    "typescript": "^5.8.3"
   }
 }
